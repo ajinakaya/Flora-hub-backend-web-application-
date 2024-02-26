@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 
 public interface plantrepository extends JpaRepository <plant, Integer> {
 
+
 }

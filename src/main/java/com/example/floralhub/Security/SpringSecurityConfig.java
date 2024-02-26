@@ -38,6 +38,7 @@ public class SpringSecurityConfig {
     }
 
 
+
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity)
             throws Exception {
@@ -46,16 +47,18 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/authenticate")
                 .permitAll()
-                .requestMatchers("/plant/**")
-                .hasAuthority("admin")
+                .requestMatchers("/Item/**")
+                .hasAnyAuthority("admin")
                 .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .permitAll();
+//                .authenticated()
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authenticationProvider(authenticationProvider())
+//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
 
         return httpSecurity.build();
     }

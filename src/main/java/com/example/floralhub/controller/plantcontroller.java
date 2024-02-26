@@ -22,7 +22,7 @@ public class plantcontroller {
         return "data retrieved";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/plant")
     public String createData(@RequestBody plantdto plantdto){
         plantService.save(plantdto);
         return "created data";
@@ -37,6 +37,19 @@ public class plantcontroller {
     public Optional<plant> getById(@PathVariable("id") Integer id) {
         return plantService.getById(id);
     }
+
+    @PutMapping("/update/{id}")
+    public String updateData(@PathVariable("id") Integer id, @RequestBody plantdto plantdto) {
+        Optional<plant> existingPlant = plantService.getById(id);
+
+        if (existingPlant.isPresent()) {
+            plantService.update(id, plantdto);
+            return "updated data";
+        } else {
+            return "Plant not found with id: " + id;
+        }
+    }
+
 
     @DeleteMapping("/deleteById/{id}")
     public  void deleteById(@PathVariable("id") Integer id) {

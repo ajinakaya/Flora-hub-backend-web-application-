@@ -30,7 +30,7 @@ public class plantimpl implements plantService {
         plant.setDescription(plantdto.getDescription());
         plant.setCategory(plantdto.getCategory());
         plant.setSection(plantdto.getSection());
-        plant.settempertaure(plantdto.getTempertaure());
+        plant.setTempertaure(plantdto.getTempertaure());
         plant.setHeight(plantdto.getHeight());
         plant.setPot(plantdto.getPot());
         plant.setImageurl(plantdto.getImageurl());
@@ -53,5 +53,30 @@ public class plantimpl implements plantService {
     @Override
     public void deleteById(Integer id) {
         plantrepository.deleteById(id);
+    }
+
+    public String update(Integer id, plantdto plantdto) {
+        Optional<plant> optionalPlant = plantrepository.findById(id);
+
+        if (optionalPlant.isPresent()) {
+            plant existingPlant = optionalPlant.get();
+
+            existingPlant.setPlantname(plantdto.getPlantname());
+            existingPlant.setPrice(plantdto.getPrice());
+            existingPlant.setDescription(plantdto.getDescription());
+            existingPlant.setCategory(plantdto.getCategory());
+            existingPlant.setSection(plantdto.getSection());
+            existingPlant.setTempertaure(plantdto.getTempertaure());
+            existingPlant.setHeight(plantdto.getHeight());
+            existingPlant.setPot(plantdto.getPot());
+            existingPlant.setImageurl(plantdto.getImageurl());
+
+            plantrepository.save(existingPlant);
+
+            return "updated";
+        } else {
+            return "Plant not found with id: " + id;
+        }
+
     }
 }

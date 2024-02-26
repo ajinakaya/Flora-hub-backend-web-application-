@@ -14,4 +14,5 @@ public interface plantService {
     List<plant> getAll();
     Optional<plant> getById(Integer id);
     void deleteById(Integer id);
+    String update(Integer id, plantdto plantdto);
 }

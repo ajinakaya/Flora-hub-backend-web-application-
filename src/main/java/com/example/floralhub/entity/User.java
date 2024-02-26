@@ -26,8 +26,7 @@ public class User implements UserDetails {
     @GeneratedValue(generator = "users_seq_gen", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "fullname", nullable = false)
-    private String fullName;
+
 
     @Column(nullable = false)
     private String email;

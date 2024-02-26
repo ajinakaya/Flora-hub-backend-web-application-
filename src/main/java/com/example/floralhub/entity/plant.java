@@ -3,7 +3,9 @@ package com.example.floralhub.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-
+@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -27,7 +29,7 @@ public class plant {
     @Column(name = "price", nullable = false)
     private String price;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
     @Column(name = "height")
@@ -46,58 +48,4 @@ public class plant {
     private String section;
 
 
-
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-
-    public void setPlantname(String plantname) {
-        this.plantname = plantname;
-    }
-
-
-
-    public void setImageurl(String imageurl) {
-        this.imageurl = imageurl;
-    }
-
-
-    public void setPrice(String price) {
-        this.price = String.valueOf(price);
-    }
-
-
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-
-
-    public void setPot(String pot) {
-        this.pot = pot;
-    }
-
-
-    public void setSection(String section) {
-        this.section = section;
-    }
-
-    public void settempertaure(String tempertaure) {
-        this.tempertaure = tempertaure;
-    }
 }
