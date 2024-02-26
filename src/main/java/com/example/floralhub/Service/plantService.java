@@ -15,4 +15,8 @@ public interface plantService {
     Optional<plant> getById(Integer id);
     void deleteById(Integer id);
     String update(Integer id, plantdto plantdto);
+
+    List<plant> getPlantsBySection(String section);
+    List<plant> getPlantsByCategory(String category);
+    List<plant> searchPlants(String plantname, String category);
 }
