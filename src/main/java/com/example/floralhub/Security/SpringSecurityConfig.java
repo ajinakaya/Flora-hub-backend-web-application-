@@ -51,7 +51,7 @@ public class SpringSecurityConfig {
                 .hasAnyAuthority("admin")
                 .anyRequest()
                 .permitAll();
-//                .authenticated()
+//                .authenticated();
 //                .and()
 //                .sessionManagement()
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

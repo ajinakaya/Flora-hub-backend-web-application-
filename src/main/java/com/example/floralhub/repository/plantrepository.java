@@ -12,5 +12,6 @@ public interface plantrepository extends JpaRepository <plant, Integer> {
 
     List<plant> findBySection(String section);
     List<plant> findByCategory(String category);
-    List<plant> findByPlantnameAndCategory(String plantname, String category);
+
+
 }

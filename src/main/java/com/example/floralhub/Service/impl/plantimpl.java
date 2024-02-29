@@ -86,7 +86,6 @@ public class plantimpl implements plantService {
     public List<plant> getPlantsByCategory(String category) {
         return plantrepository.findByCategory(category);
     }
-    public List<plant> searchPlants(String plantname, String category) {
-        return plantrepository.findByPlantnameAndCategory(plantname, category);
-    }
+
+
 }

@@ -1,7 +1,4 @@
 package com.example.floralhub.Service;
-
-
-
 import com.example.floralhub.DTO.plantdto;
 import com.example.floralhub.entity.plant;
 
@@ -18,5 +15,5 @@ public interface plantService {
 
     List<plant> getPlantsBySection(String section);
     List<plant> getPlantsByCategory(String category);
-    List<plant> searchPlants(String plantname, String category);
+
 }

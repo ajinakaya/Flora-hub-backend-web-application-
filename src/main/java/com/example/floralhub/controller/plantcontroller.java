@@ -20,12 +20,12 @@ public class plantcontroller {
     private final plantService plantService;
 
     @GetMapping("/data")
-    public  String getData(){
+    public String getData() {
         return "data retrieved";
     }
 
     @PostMapping("/plant")
-    public String createData(@RequestBody plantdto plantdto){
+    public String createData(@RequestBody plantdto plantdto) {
         plantService.save(plantdto);
         return "created data";
     }
@@ -35,11 +35,21 @@ public class plantcontroller {
         return plantService.getAll();
     }
 
-    @GetMapping("/getById/{id}")
-    public Optional<plant> getById(@PathVariable("id") Integer id) {
-        return plantService.getById(id);
-    }
+    @GetMapping("/planting/{id}")
+    public ResponseEntity<?> getById(@PathVariable("id") String id) {
+        try {
+            Integer plantId = Integer.parseInt(id);
+            Optional<plant> result = plantService.getById(plantId);
 
+            if (result.isPresent()) {
+                return ResponseEntity.ok(result.get());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body("Invalid ID format");
+        }
+    }
     @PutMapping("/update/{id}")
     public String updateData(@PathVariable("id") Integer id, @RequestBody plantdto plantdto) {
         Optional<plant> existingPlant = plantService.getById(id);
@@ -51,8 +61,9 @@ public class plantcontroller {
             return "Plant not found with id: " + id;
         }
     }
+
     @DeleteMapping("/deleteById/{id}")
-    public  void deleteById(@PathVariable("id") Integer id) {
+    public void deleteById(@PathVariable("id") Integer id) {
         plantService.deleteById(id);
     }
 
@@ -78,13 +89,7 @@ public class plantcontroller {
         }
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<plant>> searchPlants(@RequestParam String plantname, @RequestParam String category) {
-        List<plant> plants = plantService.searchPlants(plantname, category);
-        if (plants.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(plants, HttpStatus.OK);
-        }
-    }
+
+
+
 }
